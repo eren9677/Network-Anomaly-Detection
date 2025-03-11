@@ -21,3 +21,5 @@ You need to install the python 3.13 to be able to use this project.
 pip list --format==freeze > python_reqs.txt
 
  ```
+
+## !! I need to delete the pcap files before uploding this repository to the github because pcap file is too big for github(approximately = 700mb of data).
