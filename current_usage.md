@@ -23,3 +23,12 @@ pip list --format==freeze > python_reqs.txt
  ```
 
 ## !! I need to delete the pcap files before uploding this repository to the github because pcap file is too big for github(approximately = 700mb of data).
+
+### turning PCAP file to csv for ml
+
+this code snippet turns given pcap file to 7 features.
+
+ ```
+tshark -r test.pcap -T fields -e frame.number -e frame.time -e eth.src -e eth.dst -e ip.src -e ip.dst -e ip.proto -E header=y -E separator=, -E quote=d -E occurrence=f > test.csv
+
+ ```
