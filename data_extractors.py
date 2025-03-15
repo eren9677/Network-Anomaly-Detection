@@ -143,6 +143,8 @@ def basic_process(directory, output_csv):
         
         print(f"Successfully extracted features from {len(all_features)} time windows")
         print(f"Data saved to {output_csv}")
+
+        return output_csv
     else:
         print("No features extracted")
 
@@ -459,5 +461,8 @@ def advanced_process(directory, output_csv):
         
         print(f"Successfully extracted features from {len(all_features)} time windows")
         print(f"Data saved to {output_csv}")
+
+        ##return the name of the output csv file
+        return output_csv
     else:
         print("No features extracted")

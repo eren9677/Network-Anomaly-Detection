@@ -28,6 +28,8 @@ pip list --format==freeze > python_reqs.txt
 
 this code snippet turns given pcap file to 7 features.
 
+in case your functions are useless you can always use this instead.
+
  ```
 tshark -r test.pcap -T fields -e frame.number -e frame.time -e eth.src -e eth.dst -e ip.src -e ip.dst -e ip.proto -E header=y -E separator=, -E quote=d -E occurrence=f > test.csv
 
