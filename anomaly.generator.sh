@@ -25,30 +25,37 @@ connection_flood() {
 
 # Script 3: Unusual data transfer patterns (large file transfers)
 unusual_data_transfer() {
-  echo "Starting unusual data transfer patterns for 10 minutes..."
+  echo "Starting unusual data transfer patterns for exactly 10 minutes..."
   mkdir -p ~/temp_anomaly
   
-  for i in {1..10}; do
-    # Create a large file
+  # Create a few large files first
+  for i in {1..3}; do
     dd if=/dev/urandom of=~/temp_anomaly/large_file_$i bs=1M count=100 > /dev/null 2>&1
-    
-    # Start a Python HTTP server in background
-    python3 -m http.server 8000 --directory ~/temp_anomaly/ > /dev/null 2>&1 &
-    HTTP_SERVER_PID=$!
-    
-    # Download the file multiple times
-    for j in {1..5}; do
-      curl -s http://localhost:8000/large_file_$i -o /dev/null
-    done
-    
-    # Stop the HTTP server
-    kill $HTTP_SERVER_PID
-    wait $HTTP_SERVER_PID 2>/dev/null
   done
+  
+  # Start a Python HTTP server in background
+  python3 -m http.server 8000 --directory ~/temp_anomaly/ > /dev/null 2>&1 &
+  HTTP_SERVER_PID=$!
+  
+  # Set end time to 10 minutes from now
+  END_TIME=$(($(date +%s) + 600))
+  
+  # Run until we hit the 10 minute mark
+  while [ $(date +%s) -lt $END_TIME ]; do
+    # Download files repeatedly
+    for i in {1..3}; do
+      curl -s http://localhost:8000/large_file_$i -o /dev/null
+      sleep 1
+    done
+  done
+  
+  # Stop the HTTP server
+  kill $HTTP_SERVER_PID
+  wait $HTTP_SERVER_PID 2>/dev/null
   
   # Clean up
   rm -rf ~/temp_anomaly
-  echo "Unusual data transfer anomaly completed"
+  echo "Unusual data transfer anomaly completed in exactly 10 minutes"
 }
 
 # Script 4: DNS query anomalies
