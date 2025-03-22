@@ -34,3 +34,15 @@ in case your functions are useless you can always use this instead.
 tshark -r test.pcap -T fields -e frame.number -e frame.time -e eth.src -e eth.dst -e ip.src -e ip.dst -e ip.proto -E header=y -E separator=, -E quote=d -E occurrence=f > test.csv
 
  ```
+
+
+
+ ### Anomaly Generator Executable 
+
+you will need bash to run this executable because it uses bash shebang(#!) and syntax.
+
+```
+cd project_directory #go to the project's directory
+chmod +x anomaly_generator.sh #make anomaly_generator an executable.
+
+```
