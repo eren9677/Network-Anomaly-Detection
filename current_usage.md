@@ -42,7 +42,16 @@ tshark -r test.pcap -T fields -e frame.number -e frame.time -e eth.src -e eth.ds
 you will need bash to run this executable because it uses bash shebang(#!) and syntax.
 
 ```
-cd project_directory #go to the project's directory
+cd project_directory/pcap-files #go to the project's directory
 chmod +x anomaly_generator.sh #make anomaly_generator an executable.
 
+```
+
+### Running anomaly generator and packet sniffer at the same time
+
+don't forget to make this shell file executable before
+
+```
+cd project_directory/pcap-files #go to the project's directory
+tshark -i en0 -a duration:3600 -w anomalies.pcap & ../anomaly_generator.sh
 ```
