@@ -24,6 +24,8 @@ pip list --format==freeze > python_reqs.txt
 
 ## !! I need to delete the pcap files before uploding this repository to the github because pcap file is too big for github(approximately = 700mb of data).
 
+You should have directory named pcap-files in this project's folder.
+
 ### turning PCAP file to csv for ml
 
 this code snippet turns given pcap file to 7 features.
