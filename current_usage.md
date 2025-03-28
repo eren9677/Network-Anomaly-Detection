@@ -5,6 +5,7 @@ This text file shows the command lines used in the development process.
 In order to start the pcap capture, you need to use this command line:
 
 ```
+cd pcap-files ##go to the pcap-files directory.
 tshark -i en0 -a duration:3600 -w baseline_day1.pcap
 ```
 
@@ -15,6 +16,10 @@ It is important to run this script for 3-5 days to get useful and enough data fo
 ### Install Python Dependencies
 You need to install the python 3.13 to be able to use this project.
  python_reqs.txt file contains all dependencies for this project.
+ ```
+ pip install python_reqs.txt
+
+ ```
 
  This code gets all the dependencies in the active environment. (My environment is a conda env named PackageTracer.)
  ```
@@ -29,7 +34,7 @@ You should have directory named pcap-files in this project's folder.
 ### turning PCAP file to csv for ml
 
 this code snippet turns given pcap file to 7 features.
-
+this is what basic.csv consists of.
 in case your functions are useless you can always use this instead.
 
  ```
@@ -46,12 +51,11 @@ you will need bash to run this executable because it uses bash shebang(#!) and s
 ```
 cd project_directory/pcap-files #go to the project's directory
 chmod +x anomaly_generator.sh #make anomaly_generator an executable.
-
 ```
 
 ### Running anomaly generator and packet sniffer at the same time
 
-don't forget to make this shell file executable before
+don't forget to make this shell file executable before. You need to run tshark packet capture as a subprocess. sun this block of code to create anomalies and capture them.
 
 ```
 cd project_directory/pcap-files #go to the project's directory
